@@ -1,0 +1,8 @@
+import React from "react";
+import "./MessageList.css";
+
+function MessageList() {
+  return <div>MessageList</div>;
+}
+
+export default MessageList;
