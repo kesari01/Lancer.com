@@ -41,7 +41,7 @@ function Navbar() {
   return (
     // Apply "active" class to the navbar if scrolled or if not on the home page
     <div className={active || pathname !== "/" ? "navbar active" : "navbar"}>
-      <div className="container">
+      <div className="navContainer">
         {/* Logo section with link to home page */}
         <Link className="link" to="/">
           <div className="logo">

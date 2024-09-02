@@ -1,0 +1,20 @@
+.trustedBy {
+  background-color: #ecdfcc;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+}
+.trustContainer {
+  width: 760px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  color: grey;
+  font-weight: 500;
+}
+
+.trustIcon {
+  height: 30px;
+  object-fit: contain;
+}

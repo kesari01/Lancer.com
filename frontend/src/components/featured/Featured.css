@@ -1,0 +1,110 @@
+/* Featured Section */
+.featured {
+  height: 600px;
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(to bottom, #3c3d37, #697565);
+  color: aliceblue;
+}
+
+/* Container for the content within the featured section */
+.featuredContainer {
+  width: 1400px;
+  display: flex;
+  align-items: center;
+}
+
+/* Left section containing the tagline, search bar, and popular categories */
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* Styling for the main heading */
+h1 {
+  font-size: 50px;
+}
+
+/* Styling for the subtext */
+p {
+  font-size: 25px;
+}
+
+/* Search bar styling */
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: aliceblue;
+  border-radius: 5px;
+}
+
+/* Search input container */
+.searchInput {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* FontAwesome search icon styling */
+.faSearch {
+  width: 20px;
+  height: 20px;
+  margin: 10px;
+  color: black;
+  cursor: pointer;
+}
+
+/* Input field styling */
+input {
+  width: 400px;
+  border: none;
+  outline: none;
+  color: black;
+  background-color: aliceblue;
+  caret-color: black;
+}
+
+/* Search button styling */
+.search > button {
+  width: 120px;
+  height: 50px;
+  border: none;
+  color: black;
+  background-color: #ecdfcc;
+  cursor: pointer;
+}
+
+/* Popular categories section */
+.popular {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Popular category button styling */
+.popular > button {
+  color: aliceblue;
+  background-color: transparent;
+  border: 1px solid aliceblue;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* Right section containing the featured image */
+.right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Featured image styling */
+.featureImage {
+  height: 100%;
+  width: 100%;
+  object-fit: contain; /* Ensures the image fits within its container without cropping */
+}
