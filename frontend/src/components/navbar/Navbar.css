@@ -7,8 +7,9 @@
   transition: 0.5s all ease;
   position: sticky;
   top: 0;
+  z-index: 10;
 }
-.active {
+.navbarActive {
   color: #1e201e;
   background-color: #ecdfcc;
 }

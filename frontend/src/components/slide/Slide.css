@@ -1,0 +1,13 @@
+.slide {
+  display: flex;
+  justify-content: center;
+  padding: 100px 0px;
+}
+.slideContainer {
+  width: 1400px;
+  padding: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+/* .carousel-prev,
+.carousel-next {
+} */
