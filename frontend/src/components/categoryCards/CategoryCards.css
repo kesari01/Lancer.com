@@ -1,51 +1,77 @@
+/* CategoryCard.css */
+
 .categoryCards {
-  width: 252px;
-  height: 344px;
-  border-radius: 5px;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden; /* Ensures no content overflows the container */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect with shadow */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .categoryCards:hover {
-  transform: scale(1.05); /* Slight zoom effect on hover */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Enhance shadow on hover */
+  transform: translateY(-10px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.categoryCards a {
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  padding: 1rem;
 }
 
 .categoryImg {
   width: 100%;
-  height: 100%;
+  height: 180px;
   object-fit: cover;
-  border-radius: 5px;
-  transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth image opacity and scale transition */
+  border-bottom: 1px solid #e0e0e0;
+  transition: transform 0.3s ease;
 }
 
 .categoryCards:hover .categoryImg {
-  opacity: 0.9; /* Slightly dims the image on hover */
-  transform: scale(1.02); /* Slightly zooms the image on hover */
+  transform: scale(1.1);
 }
 
 .description {
-  font-weight: 600;
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  z-index: 2;
-  color: black; /* Darker text color for readability */
-  padding: 5px 10px;
-  border-radius: 3px;
-  max-width: 85%; /* Prevent text overflow */
+  font-size: 1rem;
+  color: #6c757d;
+  margin-top: 0.5rem;
 }
 
 .title {
-  font-weight: 900;
-  position: absolute;
-  top: 40px;
-  left: 15px;
-  z-index: 2;
-  color: black; /* Darker text color for readability */
-  padding: 5px 10px;
-  border-radius: 3px;
-  max-width: 85%; /* Prevent text overflow */
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  margin-top: 0.3rem;
+}
+
+@media (max-width: 767px) {
+  .categoryImg {
+    height: 150px;
+  }
+
+  .description {
+    font-size: 0.9rem;
+  }
+
+  .title {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 575px) {
+  .categoryImg {
+    height: 120px;
+  }
+
+  .description {
+    font-size: 0.8rem;
+  }
+
+  .title {
+    font-size: 0.9rem;
+  }
 }

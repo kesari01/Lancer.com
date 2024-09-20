@@ -18,3 +18,12 @@
   height: 30px;
   object-fit: contain;
 }
+/* Media Query for screens less than 992px */
+@media (max-width: 62rem) {
+  .trustedBy {
+    height: 55px;
+  }
+  .trustIcon {
+    height: 20px;
+  }
+}

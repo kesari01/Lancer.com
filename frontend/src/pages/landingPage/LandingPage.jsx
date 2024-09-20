@@ -3,27 +3,20 @@ import Featured from "../../components/featured/Featured";
 import TrustedBy from "../../components/trustedBy/TrustedBy";
 import Slide from "../../components/slide/Slide";
 import { cards, projects } from "../../data.js";
-import CategoryCards from "../../components/categoryCards/CategoryCards";
 import ServiceHighlights from "../../components/serviceHighlights/ServiceHighlights";
-import ProjectCards from "../../components/projectCards/ProjectCards";
-// import "./LandingPage.css";
+// import Footer from "../../components/footer/Footer";
 
 function LandingPage() {
   return (
     <div className="landingPage">
       <Featured />
       <TrustedBy />
-      <Slide slidesToShow={4} arrowsScroll={4}>
-        {cards.map((card) => (
-          <CategoryCards item={card} key={card.id} />
-        ))}
-      </Slide>
+      {/* Pass the type as "category" */}
+      <Slide data={cards} type="category" />
       <ServiceHighlights />
-      <Slide slidesToShow={4} arrowsScroll={4}>
-        {projects.map((card) => (
-          <ProjectCards item={card} key={card.id} />
-        ))}
-      </Slide>
+      {/* Pass the type as "project" */}
+      <Slide data={projects} type="project" />
+      {/* <Footer /> */}
     </div>
   );
 }

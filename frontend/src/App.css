@@ -9,6 +9,16 @@
   text-decoration: none;
   color: inherit;
 }
+body {
+  /* padding-left: 20px;
+  padding-right: 20px; */
+  padding-top: 56px;
+}
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+
 /* 
 black;
 lightgrey;

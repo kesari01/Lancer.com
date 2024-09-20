@@ -1,143 +1,124 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import Offcanvas from "react-bootstrap/Offcanvas";
 import "./Navbar.css";
 
-function Navbar() {
-  // State to determine if the navbar is active (e.g., when the page is scrolled)
-  const [active, setActive] = useState(false);
-
-  // State to manage the visibility of the user options dropdown
-  const [open, setOpen] = useState(false);
-
-  // Get the current pathname from the router location
-  const { pathname } = useLocation();
-
-  // Function to toggle the navbar's active state based on the scroll position
-  const isActive = () => {
-    if (window.scrollY > 0) {
-      setActive(true);
-    } else {
-      setActive(false);
-    }
-  };
-
-  // useEffect to add and remove the scroll event listener
-  useEffect(() => {
-    // Add scroll event listener
-    window.addEventListener("scroll", isActive);
-    // Cleanup the event listener on component unmount
-    return () => {
-      window.removeEventListener("scroll", isActive);
-    };
-  }, []);
-
-  // Simulated current user data (replace with actual user data in a real application)
-  const currentUser = {
-    id: 1,
-    username: "john deo",
-    isSeller: true,
-  };
+function OffcanvasExample() {
+  // Determine the current window size
+  const isMobileOrTablet = window.innerWidth < 992;
 
   return (
-    // Apply "active" class to the navbar if scrolled or if not on the home page
-    <div
-      className={active || pathname !== "/" ? "navbar navbarActive" : "navbar"}
-    >
-      <div className="navContainer">
-        {/* Logo section with link to home page */}
-        <Link className="link" to="/">
-          <div className="logo">
-            <span
-              className="textLogo"
-              // Change color if scrolled or if not on the home page
-              style={active || pathname !== "/" ? { color: "black" } : null}
-            >
-              Lancer
-            </span>
-            <span className="dotComTextLogo">.com</span>
-          </div>
-        </Link>
+    <>
+      <Navbar expand="lg" className="bg-body-tertiary fixed-top">
+        <Container fluid className="navbarTop">
+          <Navbar.Brand href="/" className="brandTitle">
+            <h1>Lancer</h1>
+            <span>.com</span>
+          </Navbar.Brand>
+          <Navbar.Toggle
+            aria-controls="offcanvasNavbar"
+            className="navbarButton"
+          />
+          <Navbar.Offcanvas
+            id="offcanvasNavbar"
+            aria-labelledby="offcanvasNavbarLabel"
+            placement="end"
+            className="offcanvarSidebar"
+          >
+            <Offcanvas.Header closeButton>
+              <Offcanvas.Title id="offcanvasNavbarLabel">
+                <span>Menu</span>
+              </Offcanvas.Title>
+            </Offcanvas.Header>
+            <Offcanvas.Body>
+              <Nav className="justify-content-end flex-grow-1 pe-3">
+                <Nav.Link
+                  href="/about-us"
+                  className={!isMobileOrTablet ? "pageLinkMob" : ""}
+                >
+                  <span>About us</span>
+                </Nav.Link>
 
-        {/* Navigation links */}
-        <div className="links">
-          <Link to="/about-us" className="link">
-            About us
+                <Nav.Link
+                  href="/contact-us"
+                  className={!isMobileOrTablet ? "pageLinkMob" : ""}
+                >
+                  <span>Contact us</span>
+                </Nav.Link>
+                {/* Conditional rendering for Dropdown */}
+                {isMobileOrTablet && (
+                  <NavDropdown title="Services" id="offcanvasNavbarDropdown">
+                    <NavDropdown.Item href="/" className="pageSubLinkMob">
+                      Graphics & Design
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href="/" className="pageSubLinkMob">
+                      Video & Animation
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href="/" className="pageSubLinkMob">
+                      Writing & Translation
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href="/" className="pageSubLinkMob">
+                      AI Services
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href="/" className="pageSubLinkMob">
+                      Digital Marketing
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href="/" className="pageSubLinkMob">
+                      Music & Audio
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href="/" className="pageSubLinkMob">
+                      Programming & Tech
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href="/" className="pageSubLinkMob">
+                      Business & Ideas
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href="/" className="pageSubLinkMob">
+                      Lifestyle & Fashion
+                    </NavDropdown.Item>
+                  </NavDropdown>
+                )}
+              </Nav>
+            </Offcanvas.Body>
+          </Navbar.Offcanvas>
+        </Container>
+      </Navbar>
+      {!isMobileOrTablet && (
+        <div className="menu">
+          <Link className="link" to="/">
+            Graphics & Design
           </Link>
-          <Link to="/contact-us" className="link">
-            Contact us
+          <Link className="link" to="/">
+            Video & Animation
           </Link>
-
-          {/* Show "Become a seller" link if the user is not a seller */}
-          {!currentUser?.isSeller && (
-            <span className="link">Become a seller</span>
-          )}
-
-          {/* Show login button if the user is not logged in */}
-          {!currentUser && <button>Log in</button>}
-
-          {/* Show user options dropdown if the user is logged in */}
-          {currentUser && (
-            <div className="user" onClick={() => setOpen(!open)}>
-              <img src="user.jpg" alt="User avatar" />
-              <span>{currentUser?.username}</span>
-
-              {/* Conditionally render dropdown options if the user icon is clicked */}
-              {open && (
-                <div className="options">
-                  {/* Show seller-specific options if the user is a seller */}
-                  {currentUser?.isSeller && (
-                    <>
-                      <Link to="/gig-list">Gigs</Link>
-                      <Link to="/add-new-gig">Add new gig</Link>
-                    </>
-                  )}
-                  <Link to="/order-list">Orders</Link>
-                  <Link to="/message-list">Messages</Link>
-                  <Link to="/logout">Logout</Link>
-                </div>
-              )}
-            </div>
-          )}
+          <Link className="link" to="/">
+            Writing & Translation
+          </Link>
+          <Link className="link" to="/">
+            AI Services
+          </Link>
+          <Link className="link" to="/">
+            Digital Marketing
+          </Link>
+          <Link className="link" to="/">
+            Music & Audio
+          </Link>
+          <Link className="link" to="/">
+            Programming & Tech
+          </Link>
+          <Link className="link" to="/">
+            Business
+          </Link>
+          <Link className="link" to="/">
+            Lifestyle
+          </Link>
         </div>
-      </div>
-
-      {/* Render additional menu and separator when the navbar is active or if not on the home page */}
-      {(active || pathname !== "/") && (
-        <>
-          <hr />
-          <div className="menu">
-            <Link className="link" to="/">
-              Graphics & Design
-            </Link>
-            <Link className="link" to="/">
-              Video & Animation
-            </Link>
-            <Link className="link" to="/">
-              Writing & Translation
-            </Link>
-            <Link className="link" to="/">
-              AI Services
-            </Link>
-            <Link className="link" to="/">
-              Digital Marketing
-            </Link>
-            <Link className="link" to="/">
-              Music & Audio
-            </Link>
-            <Link className="link" to="/">
-              Programming & Tech
-            </Link>
-            <Link className="link" to="/">
-              Business
-            </Link>
-            <Link className="link" to="/">
-              Lifestyle
-            </Link>
-          </div>
-        </>
       )}
-    </div>
+    </>
   );
 }
 
-export default Navbar;
+export default OffcanvasExample;
