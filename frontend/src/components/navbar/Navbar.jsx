@@ -5,6 +5,10 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Offcanvas from "react-bootstrap/Offcanvas";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+
 import "./Navbar.css";
 
 function OffcanvasExample() {
@@ -36,50 +40,116 @@ function OffcanvasExample() {
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
-                <Nav.Link
+                {/* <Nav.Link
                   href="/about-us"
                   className={!isMobileOrTablet ? "pageLinkMob" : ""}
                 >
                   <span>About us</span>
-                </Nav.Link>
+                </Nav.Link> */}
 
-                <Nav.Link
+                {/* <Nav.Link
                   href="/contact-us"
                   className={!isMobileOrTablet ? "pageLinkMob" : ""}
                 >
                   <span>Contact us</span>
-                </Nav.Link>
+                </Nav.Link> */}
+                {/* <div>kesari</div> */}
                 {/* Conditional rendering for Dropdown */}
+                <>
+                  {!isMobileOrTablet && (
+                    <div className="navbarDropdown">
+                      <div className="mb-2">
+                        <DropdownButton
+                          as={ButtonGroup}
+                          key="start"
+                          id={`dropdown-button-drop-start`}
+                          drop="start"
+                          variant="secondary"
+                          title={` Kesari `}
+                        >
+                          <Dropdown.Item eventKey="1" href="/gig-list">
+                            Gig Available
+                          </Dropdown.Item>
+                          <Dropdown.Divider />
+                          <Dropdown.Item eventKey="2" href="/manage-gig">
+                            Manage Gig
+                          </Dropdown.Item>
+                          <Dropdown.Item eventKey="3" href="/order-list">
+                            My Orders
+                          </Dropdown.Item>
+                          <Dropdown.Item eventKey="4" href="/message-list">
+                            My Messages
+                          </Dropdown.Item>
+                          <Dropdown.Divider />
+                          <Dropdown.Item eventKey="5" href="/">
+                            Logout
+                          </Dropdown.Item>
+                        </DropdownButton>
+                      </div>
+                    </div>
+                  )}
+                </>
                 {isMobileOrTablet && (
-                  <NavDropdown title="Services" id="offcanvasNavbarDropdown">
-                    <NavDropdown.Item href="/" className="pageSubLinkMob">
-                      Graphics & Design
-                    </NavDropdown.Item>
-                    <NavDropdown.Item href="/" className="pageSubLinkMob">
-                      Video & Animation
-                    </NavDropdown.Item>
-                    <NavDropdown.Item href="/" className="pageSubLinkMob">
-                      Writing & Translation
-                    </NavDropdown.Item>
-                    <NavDropdown.Item href="/" className="pageSubLinkMob">
-                      AI Services
-                    </NavDropdown.Item>
-                    <NavDropdown.Item href="/" className="pageSubLinkMob">
-                      Digital Marketing
-                    </NavDropdown.Item>
-                    <NavDropdown.Item href="/" className="pageSubLinkMob">
-                      Music & Audio
-                    </NavDropdown.Item>
-                    <NavDropdown.Item href="/" className="pageSubLinkMob">
-                      Programming & Tech
-                    </NavDropdown.Item>
-                    <NavDropdown.Item href="/" className="pageSubLinkMob">
-                      Business & Ideas
-                    </NavDropdown.Item>
-                    <NavDropdown.Item href="/" className="pageSubLinkMob">
-                      Lifestyle & Fashion
-                    </NavDropdown.Item>
-                  </NavDropdown>
+                  <>
+                    <NavDropdown title="Kesari" id="offcanvasNavbarDropdown">
+                      <NavDropdown.Item
+                        href="/gig-list"
+                        className="pageSubLinkMob"
+                      >
+                        Gig Available
+                      </NavDropdown.Item>
+                      <NavDropdown.Item
+                        href="/manage-gig"
+                        className="pageSubLinkMob"
+                      >
+                        Manage Gig
+                      </NavDropdown.Item>
+                      <NavDropdown.Item
+                        href="/order-list"
+                        className="pageSubLinkMob"
+                      >
+                        My Orders
+                      </NavDropdown.Item>
+                      <NavDropdown.Item
+                        href="/message-list"
+                        className="pageSubLinkMob"
+                      >
+                        My Messages
+                      </NavDropdown.Item>
+                      <NavDropdown.Item href="/" className="pageSubLinkMob">
+                        Logout
+                      </NavDropdown.Item>
+                    </NavDropdown>
+                    <NavDropdown title="Services" id="offcanvasNavbarDropdown">
+                      <NavDropdown.Item href="/" className="pageSubLinkMob">
+                        Graphics & Design
+                      </NavDropdown.Item>
+                      <NavDropdown.Item href="/" className="pageSubLinkMob">
+                        Video & Animation
+                      </NavDropdown.Item>
+                      <NavDropdown.Item href="/" className="pageSubLinkMob">
+                        Writing & Translation
+                      </NavDropdown.Item>
+                      <NavDropdown.Item href="/" className="pageSubLinkMob">
+                        AI Services
+                      </NavDropdown.Item>
+                      <NavDropdown.Item href="/" className="pageSubLinkMob">
+                        Digital Marketing
+                      </NavDropdown.Item>
+                      <NavDropdown.Item href="/" className="pageSubLinkMob">
+                        Music & Audio
+                      </NavDropdown.Item>
+                      <NavDropdown.Item href="/" className="pageSubLinkMob">
+                        Programming & Tech
+                      </NavDropdown.Item>
+                      <NavDropdown.Item href="/" className="pageSubLinkMob">
+                        Business & Ideas
+                      </NavDropdown.Item>
+                      <NavDropdown.Item href="/" className="pageSubLinkMob">
+                        Lifestyle & Fashion
+                      </NavDropdown.Item>
+                    </NavDropdown>
+                  </>
                 )}
               </Nav>
             </Offcanvas.Body>

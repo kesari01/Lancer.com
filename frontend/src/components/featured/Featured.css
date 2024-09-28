@@ -18,6 +18,10 @@
   gap: 2rem;
 }
 
+.tagline i {
+  color: lightgrey;
+}
+
 /* Left section containing the tagline, search bar, and popular categories */
 .left {
   flex: 1;
