@@ -1,0 +1,82 @@
+/* ManageGig.css */
+
+/* Container styles */
+.ManageGig {
+  padding: 20px;
+  background-color: #f5f5f5;
+  /* min-height: 100vh; */
+}
+
+.ManageGigContainer {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+.ManageGigContainerHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background-color: #f0f0f0;
+}
+
+thead th {
+  padding: 12px;
+  font-weight: bold;
+  text-align: left;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+tbody td {
+  padding: 12px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* Button styling */
+.ManageGig button {
+  background-color: #697565;
+  color: aliceblue;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  color: #ECDFCC;
+  background-color: #3C3D37;
+}
+.css-snl1f5-MuiTableCell-root {
+  text-align: center;
+}
+/* Responsive styling */
+@media (max-width: 768px) {
+  .ManageGigContainer {
+    padding: 10px;
+  }
+
+  table {
+    font-size: 14px;
+  }
+
+  thead th,
+  tbody td {
+    padding: 8px;
+  }
+
+  button {
+    padding: 6px 12px;
+  }
+}

@@ -1,0 +1,3 @@
+button on navbar turns
+not showing cards properly
+blue underline

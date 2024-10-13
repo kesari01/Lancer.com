@@ -1,0 +1,238 @@
+/* Featured Section */
+.featured {
+  height: auto;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(to bottom, #3c3d37, #697565);
+  color: aliceblue;
+}
+
+/* Container for the content within the featured section */
+.featuredContainer {
+  width: 100%;
+  max-width: 1400px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.tagline i {
+  color: lightgrey;
+}
+
+/* Left section containing the tagline, search bar, and popular categories */
+.left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Styling for the main heading */
+h1 {
+  font-size: 3rem;
+  line-height: 1.2;
+  margin: 0;
+}
+
+/* Styling for the subtext */
+p {
+  font-size: 1.5rem;
+  margin: 0;
+  font-style: italic;
+}
+
+/* Search bar styling */
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: aliceblue;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}
+
+/* Search input container */
+.searchInput {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+/* FontAwesome search icon styling */
+.faSearch {
+  width: 20px;
+  height: 20px;
+  color: black;
+}
+
+/* Input field styling */
+input {
+  flex: 1;
+  border: none;
+  outline: none;
+  color: black;
+  background-color: aliceblue;
+  padding: 0.5rem;
+}
+
+/* Search button styling */
+.search > button {
+  width: 120px;
+  height: 50px;
+  border: none;
+  color: black;
+  background-color: #ecdfcc;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s;
+}
+
+.search > button:hover {
+  background-color: #d0c4a5;
+}
+
+/* Popular categories section */
+.popular {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Popular category button styling */
+.popular > button {
+  color: aliceblue;
+  background-color: transparent;
+  border: 1px solid aliceblue;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.popular > button:hover {
+  background-color: aliceblue;
+  color: black;
+}
+
+/* Right section containing the featured image */
+.right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.featureImage {
+  width: 100%;
+  max-width: 500px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+/* Media Query for desktop screens (above 992px) */
+@media (min-width: 62rem) {
+  .featured {
+    /* height: 45rem; */
+  }
+  .featuredContainer{
+    height: 500px;
+  }
+}
+
+/* Media Query for tablet screens (768px to 992px) */
+@media (min-width: 48rem) and (max-width: 62rem) {
+  .featuredContainer {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 1rem;
+  }
+
+  .left {
+    align-items: center;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  p {
+    font-size: 1.25rem;
+  }
+
+  .search {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .searchInput {
+    width: 100%;
+  }
+
+  input {
+    width: 100%;
+  }
+
+  .search > button {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .featureImage {
+    max-width: 450px;
+  }
+}
+
+/* Media Query for mobile screens (below 768px) */
+@media (max-width: 48rem) {
+  .featured {
+    padding: 1rem;
+  }
+
+  .featuredContainer {
+    height: 700px;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  .search {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .searchInput {
+    width: 100%;
+  }
+
+  input {
+    width: 100%;
+  }
+
+  .search > button {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .popular {
+    justify-content: center;
+  }
+
+  .featureImage {
+    max-width: 350px;
+  }
+}

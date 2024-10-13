@@ -1,0 +1,278 @@
+/* Base styles for all screen sizes */
+.Gig {
+  background-color: #f8f9fa;
+  padding: 20px;
+  font-family: "Arial", sans-serif;
+}
+
+.GigContainer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.GigContainerLeft {
+  flex: 1;
+  color: #333;
+}
+
+.GigContainerLeft h1{
+  /* font-size: 30px; */
+} 
+
+.GigMaster > span {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.GigContainerRight {
+  /* background-color: #f1f1f1; */
+  flex: 0.5;
+  border: 1px solid lightgrey;
+  padding: 20px;
+  border-radius: 5px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: sticky;
+  top: 150px;
+  max-height: 26.5rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #3c3d37;
+  margin-bottom: 20px;
+}
+
+p {
+  color: #555;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+h2 {
+  font-size: 2rem;
+  color: #3c3d37;
+  margin: 20px 0;
+}
+
+h3 {
+  font-size: 1.8rem;
+  color: #3c3d37;
+  margin-bottom: 15px;
+}
+
+img {
+  width: 70%;
+  height: auto;
+  border-radius: 8px;
+  margin: 15px 0;
+}
+
+.box {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.gigItems {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.gigItem {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  flex: 1;
+  min-width: 150px;
+}
+
+.gigTitle {
+  font-weight: bold;
+  color: #3c3d37;
+}
+
+.gigDesc {
+  color: #555;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 20px 0;
+}
+
+.breadcrumb-item a {
+  color: #6c757d;
+  text-decoration: none;
+}
+
+.breadcrumb-item.active {
+  color: #333;
+}
+
+.breadcrumb-item a:hover {
+  color: #495057;
+}
+
+/* Reviews section */
+.gigReviews {
+  margin-top: 30px;
+}
+
+.gigReview {
+  background-color: #f1f1f1;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gigReview span:first-child {
+  font-weight: bold;
+  color: #333;
+}
+
+.gigReview span:nth-child(2) {
+  flex: 1;
+  margin: 0 15px;
+  color: #555;
+}
+
+.gigReview span:last-child {
+  color: #1e201e;
+  font-weight: bold;
+}
+
+/* Hover effects */
+.gigReview:hover {
+  background-color: #e9ecef;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.gigTitle:hover {
+  color: #495057;
+}
+
+.gigPrice {
+  color: #1e201e;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.gigDetails {
+  color: #1e201e;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.gigFeature {
+  display: flex;
+  flex-direction: column;
+}
+.gigFeature span {
+  padding: 0.1rem;
+}
+
+.GigContainerRight button {
+  background-color: #3c3d37; /* Dark grey */
+  color: white;
+  border: 2px solid #1e201e; /* Blackish grey */
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-transform: uppercase;
+}
+
+.GigContainerRight button:hover {
+  background-color: #1e201e; /* Blackish grey */
+  color: aliceblue; /* Light Blue */
+  border-color: #697565; /* Olive Greenish */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-3px); /* Small lifting effect */
+}
+
+/* Responsive design */
+@media (min-width: 62rem){
+  .GigContainerLeft h1{
+    font-size: 32 px;
+  }
+  .GigContainerRight p{
+    font-size: 15px;
+  }
+
+}
+
+
+@media (min-width: 48rem) and (max-width: 62rem) {
+  .GigContainer {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .gigItems {
+    flex-direction: column;
+  }
+
+  .gigItem {
+    min-width: 100%;
+  }
+  .gigReview {
+    flex-direction: column;
+  }
+
+  .GigContainerRight {
+    flex: none;
+    margin-top: 20px;
+    max-height: 35 rem;
+  }
+}
+
+@media (max-width: 48rem) {
+  /* h1 {
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1rem;
+  }
+
+  p {
+    font-size: 1rem;
+  } */
+  .gigDetails span {
+    font-size: 0.9rem;
+  }
+  .GigContainerRight {
+    flex: none;
+    margin-top: 20px;
+    max-height: 30rem;
+    max-width: 18.4rem;
+  }
+}

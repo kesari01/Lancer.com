@@ -1,0 +1,58 @@
+/* Slide.css */
+
+.card {
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.custom-carousel {
+  position: relative;
+}
+
+.custom-carousel .p-carousel-content {
+  padding: 1rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.custom-carousel .p-carousel-item {
+  transition: transform 0.5s ease-in-out;
+}
+
+.custom-carousel .p-carousel-item:hover {
+  transform: scale(1.05);
+}
+
+.custom-carousel .p-carousel-indicators .p-carousel-indicator {
+  background-color: #007bff;
+}
+
+.custom-carousel .p-carousel-indicators .p-carousel-indicator.p-highlight {
+  background-color: #0056b3;
+}
+
+@media (max-width: 1199px) {
+  .card {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .card {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 575px) {
+  .card {
+    padding: 0.5rem;
+  }
+
+  .custom-carousel .p-carousel-item {
+    padding: 0.5rem;
+  }
+}

@@ -1,0 +1,106 @@
+.fixed-top {
+  padding: 0 !important;
+}
+.navbarTop {
+  background-color: #3c3d37 !important;
+}
+.brandTitle {
+  display: flex;
+  align-items: center;
+}
+.brandTitle > h1 {
+  padding-top: 5.5px;
+  font-size: 27px;
+  color: #ecdfcc;
+}
+.brandTitle > span {
+  font-weight: 600;
+  color: #697565;
+}
+.navbarButton {
+  background-color: #ecdfcc !important;
+}
+.offcanvarSidebar {
+  background-color: #ecdfcc !important;
+}
+#offcanvasNavbarLabel > span {
+  color: #1e201e;
+}
+.pageLinkMob > span {
+  font-size: 18px;
+  font-weight: 400;
+  color: #ecdfcc;
+}
+.pageSubLinkMob {
+  color: aliceblue !important;
+  background-color: #697565 !important;
+}
+.menu {
+  padding: 16px 30px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 17px;
+  font-weight: 300;
+  color: aliceblue !important;
+  background-color: #697565;
+}
+
+/* --------------------------- */
+
+.navbarDropdown {
+margin: 0;
+  background-color: transparent;
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+}
+.navbarDropdown .DropdownButton {
+  background: none; /* No background */
+  color: inherit; /* Inherit text color from parent */
+  border: none; /* No border */
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.navbarDropdown .DropdownButton:hover {
+  color: #4a90e2;
+  transform: translateY(-2px);
+}
+
+#dropdown-button-drop-start{
+  color:#1E201E;
+  background-color: #ECDFCC;
+  padding: 4px 6px;
+}
+
+.navbarDropdown .Dropdown-item {
+  color: #333; /* Text color for dropdown items */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbarDropdown .Dropdown-item:hover {
+  background-color: #f0f0f0; /* Highlight color on hover */
+  color: #4a90e2; /* Change text color on item hover for better contrast */
+}
+
+.dropdown-item{
+  font-size: 12px;
+  font-weight: 900;
+  color: #1E201E;
+}
+
+.navbarDropdown .Dropdown-divider {
+  background-color: #ccc; /* Divider color */
+  height: 1px;
+  margin: 8px 0;
+}
+
+.menu{
+  padding: 10px 24px;
+}
+
+.link {
+  font-size: 15px;
+}

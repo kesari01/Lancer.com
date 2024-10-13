@@ -1,0 +1,120 @@
+/* Base Styles */
+.ServiceHighlights {
+  background-color: aliceblue;
+  display: flex;
+  justify-content: center;
+  padding: 50px 25px; /* Adjusted padding for smaller screens */
+}
+
+.ServiceHighlightsContainer {
+  width: 100%;
+  max-width: 1400px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 50px; /* Reduced gap for smaller screens */
+}
+
+.highlightsItemLeft {
+  display: flex;
+  flex-direction: column;
+  flex: 3;
+  gap: 15px;
+}
+
+.highlightsItemRight {
+  text-align: center;
+  flex: 2;
+}
+
+.faCircleCheck {
+  display: flex;
+}
+
+.highlightsItemVideo {
+  width: 100%;
+  max-width: 600px; /* Responsive max width for video */
+  height: auto;
+}
+
+.highlightsItemLeft > h1 {
+  font-size: 30px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.highlightsTitle {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  align-items:baseline;
+}
+
+.highlightsTitle > p {
+  font-size: 16px;
+  font-weight: 300;
+  color: rgb(84, 81, 81);
+  line-height: 28px;
+  letter-spacing: 1px;
+}
+
+.highlightsItemLeft > p {
+  font-size: 18px;
+  font-weight: 400;
+  color: grey;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .ServiceHighlights {
+    padding: 60px 20px; /* Adjusted padding for screens smaller than 992px */
+  }
+
+  .ServiceHighlightsContainer {
+    flex-direction: column; /* Stack items vertically */
+    gap: 30px; /* Reduced gap for stacked items */
+  }
+
+  .highlightsItemLeft,
+  .highlightsItemRight {
+    flex: 1 1 auto; /* Allow items to grow and shrink */
+  }
+
+  .highlightsItemVideo {
+    width: 100%; /* Make video responsive */
+    max-width: 100%; /* Remove fixed max-width */
+  }
+
+  .highlightsItemLeft > h1 {
+    font-size: 24px; /* Responsive font size */
+    text-align: center; /* Center align text */
+  }
+
+  .highlightsTitle > p {
+    font-size: 16px; /* Responsive font size */
+  }
+
+  .highlightsItemLeft > p {
+    font-size: 16px; /* Responsive font size */
+  }
+}
+
+/* Additional responsive design for even smaller screens */
+@media (max-width: 576px) {
+  .highlightsTitle > p {
+    font-size: 14px; /* Further reduced font size */
+  }
+
+  .highlightsItemLeft > p {
+    font-size: 14px; /* Further reduced font size */
+  }
+
+  .ServiceHighlights {
+    padding: 40px 10px; /* Adjusted padding for very small screens */
+  }
+
+  .highlightsItemLeft,
+  .highlightsItemRight {
+    text-align: center; /* Center align text on very small screens */
+  }
+}

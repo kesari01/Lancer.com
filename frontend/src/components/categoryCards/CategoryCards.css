@@ -1,0 +1,88 @@
+/* CategoryCard.css */
+
+.categoryCards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* button{
+  color: #1E201E !important;
+  background-color: transparent !important;
+} */
+
+.categoryCards:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.categoryCards a {
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  padding: 1rem;
+}
+
+.categoryImg {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-bottom: 1px solid #e0e0e0;
+  transition: transform 0.3s ease;
+}
+
+.categoryCards:hover .categoryImg {
+  transform: scale(1.1);
+}
+
+.description {
+  font-size: 1rem;
+  color: #6c757d;
+  margin-top: 0.5rem;
+}
+
+.title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  margin-top: 0.3rem;
+}
+
+@media(min-width: 62rem) {
+  .categoryCards{
+    width: 20rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .categoryImg {
+    height: 150px;
+  }
+
+  .description {
+    font-size: 0.9rem;
+  }
+
+  .title {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 575px) {
+  .categoryImg {
+    height: 120px;
+  }
+
+  .description {
+    font-size: 0.8rem;
+  }
+
+  .title {
+    font-size: 0.9rem;
+  }
+}

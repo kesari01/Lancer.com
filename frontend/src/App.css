@@ -1,0 +1,30 @@
+/* body {
+  padding: 0;
+  margin: 0;
+} */
+
+* {
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  color: inherit;
+}
+body {
+  /* padding-left: 20px;
+  padding-right: 20px; */
+  padding-top: 56px;
+}
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 
+black;
+lightgrey;
+#1E201E;
+#3C3D37;
+#697565;
+#ECDFCC;
+aliceblue
+white; */

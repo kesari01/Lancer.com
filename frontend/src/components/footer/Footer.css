@@ -1,0 +1,134 @@
+/* General Footer Styling */
+.footer {
+  background-color: #1e1e1e; /* Dark background for contrast */
+  color: #f1f1f1; /* Light text color */
+  padding: 40px 20px; /* Spacious padding for better structure */
+  font-family: "Arial", sans-serif;
+}
+
+.footerContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Top Section (Categories, About, Community) */
+.footerContainerTop {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap; /* Allows wrapping on smaller screens */
+  gap: 30px; /* Space between items */
+}
+
+.footerContainerTopItem h2 {
+  font-size: 18px;
+  margin-bottom: 16px;
+  color: #f1f1f1;
+  font-weight: 600;
+}
+
+.footerContainerTopItem span {
+  display: block;
+  color: #ccc; /* Softer color for links */
+  font-size: 14px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.footerContainerTopItem span:hover {
+  color: #ffcc00; /* Bright hover effect */
+}
+
+/* Responsive Flexbox for Mobile, Tablet, Desktop */
+@media (max-width: 768px) {
+  .footerContainerTop {
+    flex-direction: column; /* Stacks items vertically for tablet and mobile */
+    align-items: center;
+    text-align: center;
+  }
+  .footerContainerTopItem {
+    width: 100%; /* Full width for mobile */
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .footerContainerTopItem {
+    flex: 1 1 30%; /* Three-column layout for tablets */
+  }
+}
+
+@media (min-width: 1025px) {
+  .footerContainerTopItem {
+    flex: 1 1 22%; /* Four-column layout for desktop */
+  }
+}
+
+/* Bottom Section */
+.footerContainerbottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* Makes it responsive for smaller screens */
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #333; /* Subtle top border */
+}
+
+.footerContainerbottomLeft h2 {
+  font-size: 22px;
+  color: #ffcc00; /* Brand color */
+  margin-bottom: 5px;
+}
+
+.footerContainerbottomLeft span {
+  font-size: 14px;
+  color: #999; /* Lighter color for copyright text */
+}
+
+.footerContainerbottomRight {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.socialMediaIcons {
+  display: flex;
+  gap: 15px;
+}
+
+.socialMediaIcon {
+  font-size: 20px;
+  color: #ccc; /* Light color for icons */
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.socialMediaIcon:hover {
+  color: #ffcc00; /* Bright color on hover */
+}
+
+/* Server Location */
+.server {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.server span {
+  color: #999;
+  font-size: 14px;
+}
+
+/* Responsive Design for Bottom Section */
+@media (max-width: 768px) {
+  .footerContainerbottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .footerContainerbottomRight {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
