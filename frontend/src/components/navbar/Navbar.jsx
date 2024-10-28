@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import axios from "axios";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -9,12 +10,53 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
-
-import "./Navbar.css"
+import "./Navbar.css";
 
 function OffcanvasExample() {
-  // Determine the current window size
-  const isMobileOrTablet = window.innerWidth < 992;
+  const [isMobileOrTablet, setIsMobileOrTablet] = useState(
+    window.innerWidth < 992
+  );
+  const [currentUser, setCurrentUser] = useState(
+    JSON.parse(localStorage.getItem("currentUser"))
+  );
+  const navigate = useNavigate();
+
+  const userName = currentUser ? currentUser.name : "Login";
+
+  const handleLogout = async () => {
+    try {
+      await axios.post("http://localhost:8800/api/auth/logout");
+      localStorage.removeItem("currentUser");
+      setCurrentUser(null); // Update state
+      navigate("/login");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobileOrTablet(window.innerWidth < 992);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleStorageChange = () => {
+      setCurrentUser(JSON.parse(localStorage.getItem("currentUser")));
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+
+    // Cleanup the event listener
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
 
   return (
     <>
@@ -66,7 +108,7 @@ function OffcanvasExample() {
                           id={`dropdown-button-drop-start`}
                           drop="start"
                           variant="secondary"
-                          title={` Kesari `}
+                          title={userName}
                         >
                           <Dropdown.Item eventKey="1" href="/gig-list">
                             Gig Available
@@ -82,7 +124,7 @@ function OffcanvasExample() {
                             My Messages
                           </Dropdown.Item>
                           <Dropdown.Divider />
-                          <Dropdown.Item eventKey="5" href="/">
+                          <Dropdown.Item eventKey="5" onClick={handleLogout}>
                             Logout
                           </Dropdown.Item>
                         </DropdownButton>
@@ -92,7 +134,7 @@ function OffcanvasExample() {
                 </>
                 {isMobileOrTablet && (
                   <>
-                    <NavDropdown title="Kesari" id="offcanvasNavbarDropdown">
+                    <NavDropdown title={userName} id="offcanvasNavbarDropdown">
                       <NavDropdown.Item
                         href="/gig-list"
                         className="pageSubLinkMob"
@@ -117,7 +159,10 @@ function OffcanvasExample() {
                       >
                         My Messages
                       </NavDropdown.Item>
-                      <NavDropdown.Item href="/" className="pageSubLinkMob">
+                      <NavDropdown.Item
+                        className="pageSubLinkMob"
+                        onClick={handleLogout}
+                      >
                         Logout
                       </NavDropdown.Item>
                     </NavDropdown>
