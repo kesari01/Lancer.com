@@ -2,20 +2,42 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "../models/userSchema.js";
 import createError from "../utils/createError.js";
+import multer from "multer";
+import path from "path";
+
+// Configure multer for file uploads
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "uploads/"); // Ensure this directory exists
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname)); // Append timestamp to filename
+  },
+});
+
+const upload = multer({ storage });
 
 export const register = async (req, res, next) => {
   try {
     const hashPass = bcrypt.hashSync(req.body.password, 10);
     const newUser = new User({
-      ...req.body,
+      name: req.body.name,
+      email: req.body.email,
       password: hashPass,
+      dp: req.file ? req.file.path : null, // Save file path
+      country: req.body.country,
+      mobile: req.body.mobile,
+      isSeller: req.body.isSeller,
     });
     await newUser.save();
-    res.status(201).send("user is created");
+    res.status(201).send("User is created");
   } catch (err) {
     next(err);
   }
 };
+
+// Make sure to export the upload middleware
+export const uploadUserImage = upload.single("dp");
 
 export const login = async (req, res, next) => {
   try {
