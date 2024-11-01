@@ -1,7 +1,16 @@
-// import express from "express";
-// const router = express.Router();
-// import { deleteUser } from "../controllers/userController.js";
+import express from "express";
+import { verifyToken } from "../middleware/jwtAuth.js";
+import {
+  createGig,
+  deleteGig,
+  getGig,
+  getGigList,
+} from "../controllers/gigController.js";
+const router = express.Router();
 
-// router.get("/test", deleteUser);
+router.post("/create", verifyToken, createGig);
+router.delete("/delete/:id", verifyToken, deleteGig);
+router.get("/get-gig/:id", verifyToken, getGig);
+router.get("/get-gig-list", verifyToken, getGigList);
 
-// export default router;
+export default router;

@@ -6,7 +6,7 @@ import cors from "cors";
 
 import authRoute from "./routes/authRoute.js";
 // import conversationRoute from "./routes/conversationRoutes.js";
-// import gigRoute from "./routes/gigRoutes.js";
+import gigRoute from "./routes/gigRoutes.js";
 // import messageRoute from "./routes/messageRoutes.js";
 // import orderRoute from "./routes/orderRoutes.js";
 // import reviewRoute from "./routes/conversationRoutes.js";
@@ -17,7 +17,7 @@ dotenv.config();
 app.use(
   cors(
     {
-      origin: ["http://localhost:5173", "http://192.168.1.5:5173"],
+      origin: ["http://localhost:5173", "http://192.168.1.6:5173"],
       credentials: true,
     },
     { withCredentials: true }
@@ -33,7 +33,7 @@ app.use((err, req, res, next) => {
 
 app.use("/api/auth", authRoute);
 // app.use("/api/conversations", conversationRoute);
-// app.use("/api/gigs", gigRoute);
+app.use("/api/gigs", gigRoute);
 // app.use("/api/messages", messageRoute);
 // app.use("/api/orders", orderRoute);
 // app.use("/api/reviews", reviewRoute);

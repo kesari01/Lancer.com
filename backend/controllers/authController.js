@@ -1,9 +1,9 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import User from "../models/userSchema.js";
-import createError from "../utils/createError.js";
 import multer from "multer";
 import path from "path";
+import User from "../models/userSchema.js";
+import createError from "../utils/createError.js";
 
 // Configure multer for file uploads
 const storage = multer.diskStorage({
@@ -29,8 +29,10 @@ export const register = async (req, res, next) => {
       mobile: req.body.mobile,
       isSeller: req.body.isSeller,
     });
-    await newUser.save();
-    res.status(201).send("User is created");
+    const savedUser = await newUser.save();
+    // Send back the saved user data (excluding password)
+    const { password, ...userData } = savedUser._doc;
+    res.status(201).json(userData);
   } catch (err) {
     next(err);
   }
