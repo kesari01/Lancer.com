@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // Importing components and pages
@@ -12,30 +13,39 @@ import Message from "./pages/message/Message";
 import MessageList from "./pages/messageList/MessageList";
 import OrderList from "./pages/orderList/OrderList";
 import Register from "./pages/register/Register";
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+} from "@tanstack/react-query";
 import "./App.css";
 
 function App() {
+  const queryClient = new QueryClient();
+
   return (
     <div>
-      {/* BrowserRouter component to handle routing */}
-      <BrowserRouter>
-        <Routes>
-          {/* Layout component wraps around all routes to provide consistent layout */}
-          <Route path="/" element={<Layout />}>
-            {/* Define routes for different pages */}
-            <Route index element={<LandingPage />} />
-            <Route path="/add-new-gig" element={<AddNewGig />} />
-            <Route path="/gig/:id" element={<Gig />} />
-            <Route path="/gig-list" element={<GigList />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/manage-gig" element={<ManageGig />} />
-            <Route path="/message/:id" element={<Message />} />
-            <Route path="/message-list" element={<MessageList />} />
-            <Route path="/order-list" element={<OrderList />} />
-            <Route path="/register" element={<Register />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <QueryClientProvider client={queryClient}>
+        {/* BrowserRouter component to handle routing */}
+        <BrowserRouter>
+          <Routes>
+            {/* Layout component wraps around all routes to provide consistent layout */}
+            <Route path="/" element={<Layout />}>
+              {/* Define routes for different pages */}
+              <Route index element={<LandingPage />} />
+              <Route path="/add-new-gig" element={<AddNewGig />} />
+              <Route path="/gig/:id" element={<Gig />} />
+              <Route path="/gig-list" element={<GigList />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/manage-gig" element={<ManageGig />} />
+              <Route path="/message/:id" element={<Message />} />
+              <Route path="/message-list" element={<MessageList />} />
+              <Route path="/order-list" element={<OrderList />} />
+              <Route path="/register" element={<Register />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </QueryClientProvider>
     </div>
   );
 }

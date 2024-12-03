@@ -1,1 +1,2 @@
 need refresh after login and logout
+need refresh after sorting the gigList

@@ -39,8 +39,17 @@ export const getGig = async (req, res, next) => {
 };
 
 export const getGigList = async (req, res, next) => {
+  const q = req.query;
+  const filters = {
+    ...(q.userId && { userId: q.userId }),
+    ...(q.category && { category: q.category }),
+    ...((q.min || q.max) && {
+      price: { ...(q.min && { $gte: q.min }), ...(q.max && { $lte: q.max }) },
+    }),
+    ...(q.search && { title: { $regex: q.search, $options: "i" } }),
+  };
   try {
-    const gigs = await Gig.find();
+    const gigs = await Gig.find(filters).sort({ [q.sort]: -1 });
     if (!gigs) next(createError(404, "No Gig not found!"));
     res.status(200).json(gigs);
   } catch (err) {

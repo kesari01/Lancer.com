@@ -20,7 +20,6 @@ function OffcanvasExample() {
     JSON.parse(localStorage.getItem("currentUser"))
   );
   const navigate = useNavigate();
-  console.log("currentUser: ", currentUser);
 
   const userName = currentUser ? currentUser.name : "Login";
 

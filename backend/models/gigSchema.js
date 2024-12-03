@@ -55,6 +55,15 @@ const gigSchema = new Schema(
       type: [String],
       required: true,
     },
+    ratings: {
+      type: Number,
+    },
+    ratings: {
+      type: Number,
+    },
+    TotalRatings: {
+      type: Number,
+    },
   },
   {
     timestamps: true,

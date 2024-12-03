@@ -1,4 +1,9 @@
 /* Gig card styling */
+.gigCardLink {
+  text-decoration: none;
+  color: inherit;
+}
+
 .GigCard {
   background-color: #fff;
   border-radius: 10px;
@@ -6,7 +11,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   width: 23.2rem;
-  padding: 0.63 rem;
+  padding: 0.63rem;
   margin: 1.25rem;
 }
 
@@ -23,13 +28,28 @@
 }
 
 .gigCardInfo {
-  padding: 1rem;
+  /* padding: 1rem; */
 }
 
 .gigCardUser {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  /* Space between image and name */
   font-weight: 600;
   font-size: 1.1rem;
   margin-bottom: 0.5rem;
+}
+
+.gigCardUser img {
+  width: 40px;
+  /* Size of the circular image */
+  height: 40px;
+  /* Same as width to make it circular */
+  border-radius: 50%;
+  /* Makes the image circular */
+  object-fit: cover;
+  /* Ensures the image covers the space properly */
 }
 
 .gigCardInfo p {
@@ -39,6 +59,8 @@
 }
 
 .gigCardDetails {
+  display: flex;
+  justify-content: space-between;
   padding: 1rem;
   background-color: #f9f9f9;
   border-top: 1px solid #eaeaea;
