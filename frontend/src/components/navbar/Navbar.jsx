@@ -28,7 +28,7 @@ function OffcanvasExample() {
       await axios.post("http://localhost:8800/api/auth/logout");
       localStorage.removeItem("currentUser");
       setCurrentUser(null); // Update state
-      navigate("/login");
+      navigate("/");
     } catch (err) {
       console.log(err);
     }
@@ -83,20 +83,6 @@ function OffcanvasExample() {
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
-                {/* <Nav.Link
-                  href="/about-us"
-                  className={!isMobileOrTablet ? "pageLinkMob" : ""}
-                >
-                  <span>About us</span>
-                </Nav.Link> */}
-
-                {/* <Nav.Link
-                  href="/contact-us"
-                  className={!isMobileOrTablet ? "pageLinkMob" : ""}
-                >
-                  <span>Contact us</span>
-                </Nav.Link> */}
-                {/* <div>kesari</div> */}
                 {/* Conditional rendering for Dropdown */}
                 <>
                   {!isMobileOrTablet && (
@@ -113,20 +99,38 @@ function OffcanvasExample() {
                           <Dropdown.Item eventKey="1" href="/gig-list">
                             Gig Available
                           </Dropdown.Item>
-                          <Dropdown.Divider />
-                          <Dropdown.Item eventKey="2" href="/manage-gig">
-                            Manage Gig
-                          </Dropdown.Item>
-                          <Dropdown.Item eventKey="3" href="/order-list">
-                            My Orders
-                          </Dropdown.Item>
-                          <Dropdown.Item eventKey="4" href="/message-list">
-                            My Messages
-                          </Dropdown.Item>
-                          <Dropdown.Divider />
-                          <Dropdown.Item eventKey="5" onClick={handleLogout}>
-                            Logout
-                          </Dropdown.Item>
+                          {currentUser ? (
+                            <>
+                              {currentUser.isSeller && (
+                                <>
+                                  <Dropdown.Divider />
+                                  <Dropdown.Item
+                                    eventKey="2"
+                                    href="/manage-gig"
+                                  >
+                                    Manage Gig
+                                  </Dropdown.Item>
+                                </>
+                              )}
+                              <Dropdown.Item eventKey="3" href="/order-list">
+                                My Orders
+                              </Dropdown.Item>
+                              <Dropdown.Item eventKey="4" href="/message-list">
+                                My Messages
+                              </Dropdown.Item>
+                              <Dropdown.Divider />
+                              <Dropdown.Item
+                                eventKey="6"
+                                onClick={handleLogout}
+                              >
+                                Logout
+                              </Dropdown.Item>
+                            </>
+                          ) : (
+                            <Dropdown.Item eventKey="5" href="/login">
+                              Log In
+                            </Dropdown.Item>
+                          )}
                         </DropdownButton>
                       </div>
                     </div>
@@ -141,31 +145,52 @@ function OffcanvasExample() {
                       >
                         Gig Available
                       </NavDropdown.Item>
-                      <NavDropdown.Item
-                        href="/manage-gig"
-                        className="pageSubLinkMob"
-                      >
-                        Manage Gig
-                      </NavDropdown.Item>
-                      <NavDropdown.Item
-                        href="/order-list"
-                        className="pageSubLinkMob"
-                      >
-                        My Orders
-                      </NavDropdown.Item>
-                      <NavDropdown.Item
-                        href="/message-list"
-                        className="pageSubLinkMob"
-                      >
-                        My Messages
-                      </NavDropdown.Item>
-                      <NavDropdown.Item
-                        className="pageSubLinkMob"
-                        onClick={handleLogout}
-                      >
-                        Logout
-                      </NavDropdown.Item>
+                      {currentUser ? (
+                        <>
+                          {currentUser.isSeller && (
+                            <>
+                              <NavDropdown.Divider />
+                              <NavDropdown.Item
+                                href="/manage-gig"
+                                className="pageSubLinkMob"
+                              >
+                                Manage Gig
+                              </NavDropdown.Item>
+                            </>
+                          )}
+                          <NavDropdown.Item
+                            href="/order-list"
+                            className="pageSubLinkMob"
+                          >
+                            My Orders
+                          </NavDropdown.Item>
+                          <NavDropdown.Item
+                            href="/message-list"
+                            className="pageSubLinkMob"
+                          >
+                            My Messages
+                          </NavDropdown.Item>
+                          <NavDropdown.Divider />
+                          <NavDropdown.Item
+                            className="pageSubLinkMob"
+                            onClick={handleLogout}
+                          >
+                            Logout
+                          </NavDropdown.Item>
+                        </>
+                      ) : (
+                        <>
+                          <NavDropdown.Divider />
+                          <NavDropdown.Item
+                            className="pageSubLinkMob"
+                            href="/login"
+                          >
+                            Log In
+                          </NavDropdown.Item>
+                        </>
+                      )}
                     </NavDropdown>
+
                     <NavDropdown title="Services" id="offcanvasNavbarDropdown">
                       <NavDropdown.Item href="/" className="pageSubLinkMob">
                         Graphics & Design

@@ -3,11 +3,15 @@ const { Schema } = mongoose;
 
 const reviewSchema = new Schema(
   {
+    userId: {
+      type: String,
+      required: true,
+    },
     gigId: {
       type: String,
       required: true,
     },
-    userID: {
+    description: {
       type: String,
       required: true,
     },
@@ -15,10 +19,6 @@ const reviewSchema = new Schema(
       type: Number,
       required: true,
       enum: [1, 2, 3, 4, 5],
-    },
-    description: {
-      type: String,
-      required: true,
     },
   },
   {

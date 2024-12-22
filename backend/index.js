@@ -9,7 +9,7 @@ import authRoute from "./routes/authRoute.js";
 import gigRoute from "./routes/gigRoutes.js";
 // import messageRoute from "./routes/messageRoutes.js";
 // import orderRoute from "./routes/orderRoutes.js";
-// import reviewRoute from "./routes/conversationRoutes.js";
+import reviewRoute from "./routes/reviewRoutes.js";
 import userRoute from "./routes/userRoutes.js";
 
 const app = express();
@@ -36,7 +36,7 @@ app.use("/api/auth", authRoute);
 app.use("/api/gigs", gigRoute);
 // app.use("/api/messages", messageRoute);
 // app.use("/api/orders", orderRoute);
-// app.use("/api/reviews", reviewRoute);
+app.use("/api/reviews", reviewRoute);
 app.use("/api/users", userRoute);
 
 app.use((err, req, res, next) => {

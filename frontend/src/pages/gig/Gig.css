@@ -21,9 +21,9 @@
   color: #333;
 }
 
-.GigContainerLeft h1{
+.GigContainerLeft h1 {
   /* font-size: 30px; */
-} 
+}
 
 .GigMaster > span {
   display: block;
@@ -126,35 +126,53 @@ hr {
   color: #495057;
 }
 
-/* Reviews section */
-.gigReviews {
-  margin-top: 30px;
+/* GigReviewCard styles */
+.gigReview {
+  background-color: #f9f9f9;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.gigReview {
-  background-color: #f1f1f1;
-  padding: 15px;
-  margin-bottom: 15px;
-  border-radius: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.gigReview:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .gigReview span:first-child {
   font-weight: bold;
-  color: #333;
+  color: #2c3e50;
+  font-size: 1.1rem;
 }
 
 .gigReview span:nth-child(2) {
-  flex: 1;
-  margin: 0 15px;
-  color: #555;
+  /* color: #7f8c8d; */
+  font-size: 1rem;
+  line-height: 1.5;
 }
 
-.gigReview span:last-child {
+.reviewMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #95a5a6;
+  margin-top: 10px;
+}
+
+.reviewMeta span:first-child {
   color: #1e201e;
   font-weight: bold;
+  font-size: 1rem;
+}
+
+.reviewMeta span:last-child {
+  font-size: 0.9rem;
 }
 
 /* Hover effects */
@@ -211,16 +229,14 @@ hr {
 }
 
 /* Responsive design */
-@media (min-width: 62rem){
-  .GigContainerLeft h1{
+@media (min-width: 62rem) {
+  .GigContainerLeft h1 {
     font-size: 32 px;
   }
-  .GigContainerRight p{
+  .GigContainerRight p {
     font-size: 15px;
   }
-
 }
-
 
 @media (min-width: 48rem) and (max-width: 62rem) {
   .GigContainer {

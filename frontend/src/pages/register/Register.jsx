@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -131,6 +131,8 @@ export default function Register() {
             },
           }
         );
+
+        console.log("Response from backend:", res.data); // Verify structure
         localStorage.setItem("currentUser", JSON.stringify(res.data));
         navigate("/");
       }
@@ -226,6 +228,9 @@ export default function Register() {
             Register
           </Button>
         </form>
+        <Typography variant="body2" className="registerLink">
+          Already have an account? <Link to="/login">Login here</Link>
+        </Typography>
       </div>
     </div>
   );

@@ -29,10 +29,30 @@ export const register = async (req, res, next) => {
       mobile: req.body.mobile,
       isSeller: req.body.isSeller,
     });
+
     const savedUser = await newUser.save();
-    // Send back the saved user data (excluding password)
+
+    // Generate JWT token for the new user
+    const token = jwt.sign(
+      {
+        id: savedUser._id,
+        isSeller: savedUser.isSeller,
+      },
+      process.env.KEY_JWT
+      // { expiresIn: "1h" }
+    );
+
+    // Exclude password from the response
     const { password, ...userData } = savedUser._doc;
-    res.status(201).json(userData);
+
+    res
+      .cookie("accessToken", token, {
+        httpOnly: true,
+        // secure: false, // Enable for HTTPS
+        // sameSite: "lax", // Adjust based on client/server setup
+      })
+      .status(201)
+      .send({ ...userData, token }); // Include the token in the response
   } catch (err) {
     next(err);
   }
@@ -65,7 +85,7 @@ export const login = async (req, res, next) => {
         // sameSite: "lax",
       })
       .status(200)
-      .send(info);
+      .send({ ...info, token });
   } catch (err) {
     next(err);
   }

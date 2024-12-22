@@ -5,6 +5,7 @@ import "./Gig.css";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import GigReviews from "../../components/gigReviews/gigReviews";
 
 function Gig() {
   const { id } = useParams();
@@ -38,7 +39,21 @@ function Gig() {
     enabled: !!userId,
   });
 
-  if (isGigLoading || isUserLoading) {
+  // Fetch reviews for the gig
+  const {
+    isLoading: isReviewLoading,
+    error: reviewError,
+    data: reviewData,
+  } = useQuery({
+    queryKey: ["reviews", id],
+    queryFn: () =>
+      axios
+        .get(`http://localhost:8800/api/reviews/get-review/${id}`)
+        .then((res) => res.data),
+    enabled: !!id,
+  });
+
+  if (isGigLoading || isUserLoading || isReviewLoading) {
     return <div className="Gig">Loading...</div>;
   }
   if (gigError) {
@@ -55,6 +70,22 @@ function Gig() {
       </div>
     );
   }
+  if (reviewError) {
+    return (
+      <div className="Gig">
+        <p>Error loading review data: {reviewError.message}</p>
+      </div>
+    );
+  }
+  // Calculate average rating
+  const averageRating =
+    reviewData && reviewData.length > 0
+      ? (
+          reviewData.reduce((sum, review) => sum + review.rating, 0) /
+          reviewData.length
+        ).toFixed(1)
+      : "No Ratings";
+
   return (
     <div className="Gig">
       <span>
@@ -110,7 +141,7 @@ function Gig() {
                 </div>
                 <div className="gigItem">
                   <span className="gigTitle">Avg. Ratings</span>
-                  <span className="gigDesc">{gigData.ratings}</span>
+                  <span className="gigDesc">{averageRating}</span>
                 </div>
                 <div className="gigItem">
                   <span className="gigTitle">Total Reviews</span>
@@ -122,39 +153,7 @@ function Gig() {
               <p>{gigData.aboutMe}</p>
             </div>
           </div>
-          <div className="gigReviews">
-            <h3>Reviews</h3>
-            <div className="gigReview">
-              <span>Abhishek</span>
-              <span>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Repellendus eaque minima repellat explicabo perferendis quisquam
-                at, sit ex odit earum dolorem ut velit maiores, doloribus
-                accusamus in voluptatibus eum fuga?
-              </span>
-              <span>4</span>
-            </div>
-            <div className="gigReview">
-              <span>Rakshit</span>
-              <span>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Repellendus eaque minima repellat explicabo perferendis quisquam
-                at, sit ex odit earum dolorem ut velit maiores, doloribus
-                accusamus in voluptatibus eum fuga?
-              </span>
-              <span>4.5</span>
-            </div>
-            <div className="gigReview">
-              <span>Avinash</span>
-              <span>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Repellendus eaque minima repellat explicabo perferendis quisquam
-                at, sit ex odit earum dolorem ut velit maiores, doloribus
-                accusamus in voluptatibus eum fuga?
-              </span>
-              <span>4.2</span>
-            </div>
-          </div>
+          <GigReviews gigId={id} />
         </div>
         <div className="GigContainerRight">
           <div className="gigPrice">

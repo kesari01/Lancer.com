@@ -1,7 +1,14 @@
-// import express from "express";
-// const router = express.Router();
-// import { deleteUser } from "../controllers/userController.js";
+import express from "express";
+import { verifyToken } from "../middleware/jwtAuth.js";
+import {
+  createReview,
+  getReviews,
+  deleteReviews,
+} from "../controllers/reviewController.js";
+const router = express.Router();
 
-// router.get("/test", deleteUser);
+router.post("/create", verifyToken, createReview);
+router.get("/get-review/:id", getReviews);
+router.delete("/delete/:id", verifyToken, deleteReviews);
 
-// export default router;
+export default router;
