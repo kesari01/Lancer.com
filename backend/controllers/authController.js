@@ -45,14 +45,7 @@ export const register = async (req, res, next) => {
     // Exclude password from the response
     const { password, ...userData } = savedUser._doc;
 
-    res
-      .cookie("accessToken", token, {
-        httpOnly: true,
-        // secure: false, // Enable for HTTPS
-        // sameSite: "lax", // Adjust based on client/server setup
-      })
-      .status(201)
-      .send({ ...userData, token }); // Include the token in the response
+    res.status(201).send({ ...userData, token });
   } catch (err) {
     next(err);
   }
@@ -76,16 +69,8 @@ export const login = async (req, res, next) => {
       },
       process.env.KEY_JWT
     );
-
     const { password, ...info } = user._doc;
-    res
-      .cookie("accessToken", token, {
-        httpOnly: true,
-        // secure: false,
-        // sameSite: "lax",
-      })
-      .status(200)
-      .send({ ...info, token });
+    res.status(200).send({ ...info, token });
   } catch (err) {
     next(err);
   }

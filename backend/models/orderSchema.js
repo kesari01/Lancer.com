@@ -7,9 +7,13 @@ const orderSchema = new Schema(
       type: String,
       required: true,
     },
-    image: {
+    // image: {
+    //   type: String,
+    //   required: true,
+    // },
+    category: {
       type: String,
-      required: false,
+      required: true,
     },
     title: {
       type: String,

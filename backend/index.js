@@ -5,10 +5,10 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 
 import authRoute from "./routes/authRoute.js";
-// import conversationRoute from "./routes/conversationRoutes.js";
+import conversationRoute from "./routes/conversationRoutes.js";
 import gigRoute from "./routes/gigRoutes.js";
 // import messageRoute from "./routes/messageRoutes.js";
-// import orderRoute from "./routes/orderRoutes.js";
+import orderRoute from "./routes/orderRoutes.js";
 import reviewRoute from "./routes/reviewRoutes.js";
 import userRoute from "./routes/userRoutes.js";
 
@@ -32,10 +32,10 @@ app.use((err, req, res, next) => {
 });
 
 app.use("/api/auth", authRoute);
-// app.use("/api/conversations", conversationRoute);
+app.use("/api/conversations", conversationRoute);
 app.use("/api/gigs", gigRoute);
 // app.use("/api/messages", messageRoute);
-// app.use("/api/orders", orderRoute);
+app.use("/api/orders", orderRoute);
 app.use("/api/reviews", reviewRoute);
 app.use("/api/users", userRoute);
 

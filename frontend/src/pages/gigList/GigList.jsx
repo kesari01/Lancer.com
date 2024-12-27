@@ -54,10 +54,8 @@ function GigList() {
         </Breadcrumb>
       </span>
       <div className="gigListContainer">
-        <h1>AI Services</h1>
-        <p>
-          Harnessing AI innovation for smarter, efficient solutions everywhere.
-        </p>
+        <h1>Available Gigs</h1>
+        <p>Find the perfect freelancer for your project within minutes.</p>
         <div className="gigListMenu">
           <div className="gigListMenuLeft">
             <span>Budget</span>

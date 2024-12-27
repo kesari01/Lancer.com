@@ -15,12 +15,18 @@ import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import { visuallyHidden } from "@mui/utils";
+import ChatIcon from "@mui/icons-material/Chat";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
+import moment from "moment";
 
 import "./MessageList.css";
+import { useState } from "react";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const headCells = [
-  { id: "name", numeric: false, disablePadding: false, label: "Name" },
+  { id: "userId", numeric: false, disablePadding: false, label: "User ID" },
   {
     id: "lastMessage",
     numeric: false,
@@ -64,7 +70,6 @@ function EnhancedTableHead(props) {
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
-            // align={headCell.numeric ? "right" : "left"}
             align="center"
             padding={headCell.disablePadding ? "none" : "normal"}
             sortDirection={orderBy === headCell.id ? order : false}
@@ -101,6 +106,9 @@ export default function MessageList() {
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [rows, setRows] = React.useState([]);
 
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
@@ -125,6 +133,54 @@ export default function MessageList() {
     [order, orderBy, page, rowsPerPage, rows]
   );
 
+  const [currentUser, setCurrentUser] = useState(
+    JSON.parse(localStorage.getItem("currentUser"))
+  );
+
+  const token = currentUser?.token;
+  const { isLoading, error, data } = useQuery({
+    queryKey: ["conversations"],
+    queryFn: () =>
+      axios
+        .get(`http://localhost:8800/api/conversations/get-conversation-list`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          setRows(res.data);
+          return res.data;
+        }),
+  });
+
+  // Mutation to add a message
+  const mutation = useMutation({
+    mutationFn: (id) => {
+      const token = currentUser?.token; // Retrieve token from the current user
+      return axios.put(
+        `http://localhost:8800/api/conversations/update-conversation/${id}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Add token to headers
+          },
+        }
+      );
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(["conversations"]);
+    },
+    onError: (error) => {
+      // alert(`Error: ${error.response?.data || "Something went wrong"}`);
+      console.log("error");
+    },
+  });
+
+  const handleReadMessage = (id) => {
+    mutation.mutate(id);
+    navigate(`/message/${id}`);
+  };
+
   return (
     <div className="MessageList">
       <span>
@@ -133,59 +189,79 @@ export default function MessageList() {
           <Breadcrumb.Item active>My Messages</Breadcrumb.Item>
         </Breadcrumb>
       </span>
-      <div className="MessageListContainer">
-        <div className="ManageGigContainerHeader">
-          <h2>My Messages</h2>
+      {isLoading ? (
+        "loading..."
+      ) : error ? (
+        "something went wrong"
+      ) : (
+        <div className="MessageListContainer">
+          <div className="ManageGigContainerHeader">
+            <h2>My Messages</h2>
+          </div>
+          <Box sx={{ width: "100%" }}>
+            <Paper sx={{ width: "100%", mb: 2 }}>
+              <TableContainer>
+                <Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle">
+                  <EnhancedTableHead
+                    order={order}
+                    orderBy={orderBy}
+                    onRequestSort={handleRequestSort}
+                  />
+                  <TableBody>
+                    {visibleRows.map((row) => (
+                      <TableRow
+                        hover
+                        tabIndex={-1}
+                        key={row.id}
+                        className={
+                          (currentUser.isSeller && !row.readBySeller) ||
+                          (!currentUser.isSeller && !row.readByBuyer)
+                            ? "unread"
+                            : ""
+                        }
+                      >
+                        <TableCell align="center">
+                          {((currentUser.isSeller && !row.readBySeller) ||
+                            (!currentUser.isSeller && !row.readByBuyer)) && (
+                            <span className="unread-dot"></span>
+                          )}
+                          {currentUser.isSeller ? row.buyerId : row.sellerId}
+                        </TableCell>
+                        <TableCell align="center">{row.lastMessage}</TableCell>
+                        <TableCell align="center">
+                          {moment(row.updatedAt).fromNow()}
+                        </TableCell>
+                        <TableCell align="center">
+                          <ChatIcon
+                            className="chatIcon"
+                            onClick={() => handleReadMessage(row.id)}
+                          ></ChatIcon>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                    {visibleRows.length === 0 && (
+                      <TableRow>
+                        <TableCell colSpan={headCells.length} align="center">
+                          No messages found
+                        </TableCell>
+                      </TableRow>
+                    )}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+              <TablePagination
+                rowsPerPageOptions={[5, 10, 25]}
+                component="div"
+                count={rows.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+              />
+            </Paper>
+          </Box>
         </div>
-        <Box sx={{ width: "100%" }}>
-          <Paper sx={{ width: "100%", mb: 2 }}>
-            <TableContainer>
-              <Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle">
-                <EnhancedTableHead
-                  order={order}
-                  orderBy={orderBy}
-                  onRequestSort={handleRequestSort}
-                />
-                <TableBody>
-                  {visibleRows.map((row) => (
-                    <TableRow hover tabIndex={-1} key={row.id}>
-                      <TableCell component="th" scope="row">
-                        {row.name}
-                      </TableCell>
-                      <TableCell align="left">{row.lastMessage}</TableCell>
-                      <TableCell align="left">{row.date}</TableCell>
-                      <TableCell align="left">
-                        <Button
-                          variant="contained"
-                          onClick={() => alert(`Message from ${row.name}`)}
-                        >
-                          View Message
-                        </Button>
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                  {visibleRows.length === 0 && (
-                    <TableRow>
-                      <TableCell colSpan={headCells.length} align="center">
-                        No messages found
-                      </TableCell>
-                    </TableRow>
-                  )}
-                </TableBody>
-              </Table>
-            </TableContainer>
-            <TablePagination
-              rowsPerPageOptions={[5, 10, 25]}
-              component="div"
-              count={rows.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-            />
-          </Paper>
-        </Box>
-      </div>
+      )}
     </div>
   );
 }

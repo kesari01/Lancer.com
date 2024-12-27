@@ -1,7 +1,10 @@
-// import express from "express";
-// const router = express.Router();
-// import { deleteUser } from "../controllers/userController.js";
+import express from "express";
+import { verifyToken } from "../middleware/jwtAuth.js";
+import { createOrder, getOrders } from "../controllers/orderController.js";
 
-// router.get("/test", deleteUser);
+const router = express.Router();
 
-// export default router;
+router.post("/create/:gigId", verifyToken, createOrder);
+router.get("/get-order-list", verifyToken, getOrders);
+
+export default router;

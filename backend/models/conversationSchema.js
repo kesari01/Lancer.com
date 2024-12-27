@@ -8,11 +8,11 @@ const conversationSchema = new Schema(
       required: true,
       unique: true,
     },
-    sellerID: {
+    sellerId: {
       type: String,
       required: true,
     },
-    buyerID: {
+    buyerId: {
       type: String,
       required: true,
     },
